@@ -6,36 +6,22 @@ int main(int argc, char** argv)
 {
     ios::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
-
-    unordered_map<char, int> uo;
    
     int N; 
+    int arr[10] = {};
     int ret = 0;
-    bool flag = false;
 
     cin >> N;
-
-    string num = to_string(N);
-    for(int i=0; i<num.size(); i++){
-        if(num[i] == '9' || num[i] == '6'){
-            uo['6']++;
-            flag = true;
-        }
-        else uo[num[i]]++;
-    }
-    
-    if(flag){ // 6 or 9가 존재하면
-        if(uo['6'] % 2 == 1){
-            uo['6'] = (uo['6'] / 2) + 1;
-        }else{
-            uo['6'] = uo['6']/2;
-        }
+    while(N){ // 일의 자리부터 자리 수 추출
+        arr[N%10]++; 
+        N /= 10;
     }
 
-    for(auto alp: uo){
-        ret = max(ret, alp.second);
+    for(int i=0; i<10; i++){
+        if(i == 6 || i == 9) continue;
+        ret = max(ret, arr[i]);
     }
+    ret = max(ret, (arr[6] + arr[9] + 1) / 2); // 올림값 처리 
     cout << ret;
-
     return 0;
 }
