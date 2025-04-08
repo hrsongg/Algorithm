@@ -1,0 +1,38 @@
+// 6603 로또: 조합
+#include <bits/stdc++.h>
+using namespace std;
+int k, T;
+int num[15];
+int arr[15];
+
+void func(int dep, int st) {
+    if (dep == 6) {
+        for (int i = 0; i < 6; i++)
+            cout << arr[i] << " ";
+        cout << "\n";
+        return;
+    }
+    for (int i = st; i < k; i++) {
+        arr[dep] = num[i];
+        func(dep + 1, i + 1);
+    }
+}
+
+int main(void) {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> T;
+    while (T) { // k가 0이면 while문 나감
+        memset(num, 0, sizeof(num));
+        memset(arr, 0, sizeof(arr));
+        k = T;
+        for (int i = 0; i < k; i++) cin >> num[i];
+        // 오름차순으로 주어지므로 정렬할 필요 없음 
+        func(0, 0);
+        cout << "\n"; // 1TC 후 줄 바꿈
+        cin >> T;
+    }
+
+
+    return 0;
+}
