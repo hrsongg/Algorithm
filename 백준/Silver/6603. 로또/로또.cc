@@ -21,18 +21,12 @@ void func(int dep, int st) {
 int main(void) {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cin >> T;
-    while (T) { // k가 0이면 while문 나감
-        memset(num, 0, sizeof(num));
-        memset(arr, 0, sizeof(arr));
-        k = T;
+    while(1){
+        cin >> k;
+        if (k == 0) break;
         for (int i = 0; i < k; i++) cin >> num[i];
-        // 오름차순으로 주어지므로 정렬할 필요 없음 
         func(0, 0);
-        cout << "\n"; // 1TC 후 줄 바꿈
-        cin >> T;
+        cout << '\n'; // 1TC 후 줄 바꿈
     }
-
-
     return 0;
 }
